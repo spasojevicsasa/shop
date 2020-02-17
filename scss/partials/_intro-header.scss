@@ -1,0 +1,165 @@
+.intro-header {
+	position: relative;
+	margin-bottom: 40px;
+
+	h2 {
+		font-size: 24px;
+		color: #fff;
+		text-align: center;
+		text-transform: uppercase;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		/*Ovo nam omogucava da h2 sem span-a bude
+		u jednom redu*/ 
+		width: 100%;
+
+		/*da nam se na malim rezolucijama ne vidi
+		okvir koji dole pravimo sa befor i after*/
+		&::before, &::after {
+			display: none;
+		}
+
+
+		span {
+			font-size: 70px;
+			color: #ffce67;
+			display: block;
+		}
+	}
+
+	#intro-slider {
+		display: none;
+	}
+}
+
+.frame {
+
+	position: relative;
+	
+	/*pravimo okvir koji nam se vidi na vecim rezolucijama*/ 
+	&::before, &::after {
+		content: " ";
+		position: absolute;
+		width: 130px;
+		height: 60px;
+		display: block;
+		border: 3px solid #fff;
+		z-index: 5;
+	}
+
+	&::before {
+		border-bottom: none;
+		border-right: none;
+		top: 10px;
+		left: 10px;
+	}
+
+	&::after {
+		border-top: none;
+		border-left: none;
+		right: 10px;
+		bottom: 10px;
+	}
+}
+
+/*smanjujemo indikatore slidera one male kruzice
+vidimo u inspectu gde treba sa ciljamo*/
+
+#intro-slider {
+	/*ne treba nam ni providnost difoltna*/ 
+	.carousel-control {
+		background-image: none;
+		opacity: 1;
+	}
+
+	
+
+	.carousel-indicators {
+
+		/*gadjamo male kruzice*/ 
+		li {
+			width: 7px;
+			height: 7px;
+			margin: 0;
+		}
+	}
+	
+	/*menjamo strelice na slideru tako sto ubacujemo
+	nase koje su na slici*/ 
+	.arrow-left, .arrow-right {
+		width: 26px;
+		height: 48px;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.arrow-left {
+		background-image: url("../img/arrow-left.png");
+		left: 20%;
+	}
+
+	.arrow-right {
+		background-image: url("../img/arrow-right.png");
+		right: 20%;
+	}
+
+}
+
+
+@media (min-width: 768px) {
+	/*Da nam na ovoj rezoluciji umesto slike 
+	pojavljuje slider*/ 
+	.intro-header {
+		> img {
+			display: none;
+		}
+
+		#intro-slider {
+			display: block;
+
+			.carousel-indicators {
+				bottom: 0;
+			}
+		}
+
+		h2 {
+			/*pravimo "boju" oko naslova*/
+			padding: 30px 0;
+			width: 620px;
+			background-color: transparentize(#000, .7);
+			
+			/*da nam se pojavi okvir*/
+			&::before, &::after {
+				display: block;
+			}
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	
+}
+
+@media (min-width: 1200px) {
+	.intro-header {
+		margin-bottom: 70px;
+
+		h2{
+			font-size: 30px;
+
+			span {
+				font-size: 96px;
+			}
+		}
+
+		#intro-slider {
+
+			.carousel-indicators {
+				bottom: 10px;
+			}
+		}
+	}
+}
